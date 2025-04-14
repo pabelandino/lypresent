@@ -1,0 +1,52 @@
+import {Text, View, Image, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {BlurView} from 'expo-blur';
+import ImageSearch from '@/components/ImageSearch';
+
+const ImageList = () => {
+    const mockData = [1,2,3,4, 5, 6 ,7 ]
+    const MockImageList = () => (
+        <TouchableOpacity style={styles.imagesContainer}>
+            <Image style={styles.image}    source={require('@/assets/images/bg1.jpg')} />
+        </TouchableOpacity>
+        )
+
+  return (
+    <BlurView intensity={100} style={styles.container}>
+        <FlatList data={mockData} stickyHeaderIndices={[0]} ListHeaderComponent={
+            <BlurView intensity={100} tint="dark" style={styles.searchImageHeader}>
+                <ImageSearch />
+            </BlurView>
+        } renderItem={MockImageList} />
+
+    </BlurView>
+  );
+};
+
+
+const styles = StyleSheet.create({
+    container: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        overflow: 'hidden',
+        height: '80%',
+    },
+    imagesContainer: {
+        padding:5
+    },
+    searchImageHeader:{
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    image:{
+        resizeMode:'cover',
+        height:  120,
+        width: 180,
+        borderRadius: 20,
+        margin:5,
+        boxShadow:''
+    }
+})
+export default ImageList;
