@@ -1,27 +1,27 @@
-import {Text, View, Image, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {BlurView} from 'expo-blur';
 import ImageSearch from '@/components/ImageSearch';
+import VideoSearch from '@/components/VideoSearch';
 
-const ImageList = () => {
+const VideoList = () => {
     const mockData = [1,2,3,4, 5, 6 ,7 ]
     const MockImageList = () => (
         <TouchableOpacity style={styles.imagesContainer}>
             <Image style={styles.image}    source={require('@/assets/images/bg1.jpg')} />
         </TouchableOpacity>
-        )
+    )
 
-  return (
-    <BlurView intensity={100} style={styles.container}>
-        <FlatList data={mockData} stickyHeaderIndices={[0]} ListHeaderComponent={
-            <BlurView intensity={100} tint="dark" style={styles.searchImageHeader}>
-                <ImageSearch />
-            </BlurView>
-        } renderItem={MockImageList} />
+    return (
+        <BlurView intensity={100} style={styles.container}>
+            <FlatList data={mockData} stickyHeaderIndices={[0]} ListHeaderComponent={
+                <BlurView intensity={100} tint="dark" style={styles.searchImageHeader}>
+                    <VideoSearch />
+                </BlurView>
+            } renderItem={MockImageList} />
 
-    </BlurView>
-  );
+        </BlurView>
+    );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
         boxShadow:''
     }
 })
-export default ImageList;
+export default VideoList;

@@ -1,6 +1,7 @@
 import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
 import ImageList from '@/components/leftLayout/ImageList';
 import {LinearGradient} from 'expo-linear-gradient';
+import VideoList from '@/components/leftLayout/VideoList';
 
 const index = () => {
   return (
@@ -10,7 +11,11 @@ const index = () => {
                       end={{ x: 1, y: 1 }} style={styles.container}>
           <SafeAreaView  />
           <View className="items-center justify-betweent flex-row">
-              <ImageList/>
+              <View style={styles.searchVideoImageContainer}>
+                  <ImageList/>
+                  <VideoList/>
+              </View>
+
           </View>
       </LinearGradient>
 
@@ -21,6 +26,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+    },
+    searchVideoImageContainer: {
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     }
 })
 
