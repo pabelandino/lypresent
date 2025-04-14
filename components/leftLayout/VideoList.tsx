@@ -1,53 +1,60 @@
-import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {BlurView} from 'expo-blur';
-import ImageSearch from '@/components/ImageSearch';
+import { FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { BlurView } from 'expo-blur';
+
 import VideoSearch from '@/components/VideoSearch';
 
 const VideoList = () => {
-    const mockData = [1,2,3,4, 5, 6 ,7 ]
-    const MockImageList = () => (
-        <TouchableOpacity style={styles.imagesContainer}>
-            <Image style={styles.image}    source={require('@/assets/images/bg1.jpg')} />
-        </TouchableOpacity>
-    )
+  const mockData = [1, 2, 3, 4, 5, 6, 7];
+  const MockImageList = () => (
+    <TouchableOpacity style={styles.imagesContainer}>
+      <Image style={styles.image} source={require('@/assets/images/bg1.jpg')} />
+    </TouchableOpacity>
+  );
 
-    return (
-        <BlurView intensity={100} style={styles.container}>
-            <FlatList data={mockData} stickyHeaderIndices={[0]} ListHeaderComponent={
-                <BlurView intensity={100} tint="dark" style={styles.searchImageHeader}>
-                    <VideoSearch />
-                </BlurView>
-            } renderItem={MockImageList} />
-
-        </BlurView>
-    );
+  return (
+    <BlurView intensity={100} style={styles.container}>
+      <FlatList
+        data={mockData}
+        stickyHeaderIndices={[0]}
+        ListHeaderComponent={
+          <BlurView
+            intensity={100}
+            tint="dark"
+            style={styles.searchImageHeader}>
+            <VideoSearch />
+          </BlurView>
+        }
+        renderItem={MockImageList}
+      />
+    </BlurView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        overflow: 'hidden',
-        height: '45%',
-        marginBottom:10
-    },
-    imagesContainer: {
-        padding:3
-    },
-    searchImageHeader:{
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    image:{
-        resizeMode:'cover',
-        height:  110,
-        width: 170,
-        borderRadius: 20,
-        margin:5,
-        boxShadow:''
-    }
-})
+  container: {
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 15,
+    overflow: 'hidden',
+    height: '45%',
+    marginBottom: 10,
+  },
+  imagesContainer: {
+    padding: 3,
+  },
+  searchImageHeader: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  image: {
+    resizeMode: 'cover',
+    height: 110,
+    width: 170,
+    borderRadius: 20,
+    margin: 5,
+    boxShadow: '',
+  },
+});
 export default VideoList;
