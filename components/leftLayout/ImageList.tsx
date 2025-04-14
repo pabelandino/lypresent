@@ -4,10 +4,13 @@ import { BlurView } from 'expo-blur';
 import ImageSearch from '@/components/ImageSearch';
 
 const ImageList = () => {
-  const mockData = [1, 2, 3, 4, 5, 6, 7];
+  const mockData = [1, 2];
   const MockImageList = () => (
     <TouchableOpacity style={styles.imagesContainer}>
-      <Image style={styles.image} source={require('@/assets/images/bg1.jpg')} />
+      <Image style={styles.image} source={require('@/assets/images/bg1.png')} />
+      <Image style={styles.image} source={require('@/assets/images/bg3.png')} />
+      <Image style={styles.image} source={require('@/assets/images/bg2.png')} />
+      <Image style={styles.image} source={require('@/assets/images/bg4.png')} />
     </TouchableOpacity>
   );
 
@@ -37,7 +40,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
     height: '45%',
-    marginBottom: 10,
   },
   imagesContainer: {
     padding: 3,
