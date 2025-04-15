@@ -16,11 +16,19 @@ export const Colors = {
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#ECEDEE',
+    text: '#F2F3F4FF',
+    placeholderText: '#A4B6BD',
     background: '#151718',
     tint: tintColorDark,
     icon: '#9BA1A6',
+    connectedScreenIcon: '#5AFF53',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    border: '#afafaf',
+    gradients1: '#0d101c',
+    gradients2: '#1c1e24',
   },
 };
+export enum BORDER_COLORS {
+  BORDER = '#000000',
+}

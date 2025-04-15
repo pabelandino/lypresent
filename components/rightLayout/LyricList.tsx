@@ -10,6 +10,7 @@ import { BlurView } from 'expo-blur';
 import DescriptionText from '@/components/DescriptionText';
 import SearchInput from '@/components/SearchInput';
 import TitleText from '@/components/TitleText';
+import { Colors } from '@/constants/Colors';
 
 const LyricList = () => {
   const mockData = [1, 2];
@@ -23,12 +24,11 @@ const LyricList = () => {
           />
           <BlurView style={styles.textContainer} intensity={100}>
             <View style={styles.textDetailContainer}>
-              <TitleText color="white" />
-              <DescriptionText color="white" />
+              <TitleText color={Colors.dark.text} />
+              <DescriptionText color={Colors.dark.text} />
             </View>
           </BlurView>
         </View>
-
         <View style={styles.lyricContainer}>
           <Image
             style={styles.image}
@@ -36,34 +36,8 @@ const LyricList = () => {
           />
           <BlurView style={styles.textContainer} intensity={100}>
             <View style={styles.textDetailContainer}>
-              <TitleText color="white" />
-              <DescriptionText color="white" />
-            </View>
-          </BlurView>
-        </View>
-
-        <View style={styles.lyricContainer}>
-          <Image
-            style={styles.image}
-            source={require('@/assets/images/bg1.png')}
-          />
-          <BlurView style={styles.textContainer} intensity={100}>
-            <View style={styles.textDetailContainer}>
-              <TitleText color="white" />
-              <DescriptionText color="white" />
-            </View>
-          </BlurView>
-        </View>
-
-        <View style={styles.lyricContainer}>
-          <Image
-            style={styles.image}
-            source={require('@/assets/images/bg4.png')}
-          />
-          <BlurView style={styles.textContainer} intensity={100}>
-            <View style={styles.textDetailContainer}>
-              <TitleText color="white" />
-              <DescriptionText color="white" />
+              <TitleText color={Colors.dark.text} />
+              <DescriptionText color={Colors.dark.text} />
             </View>
           </BlurView>
         </View>
@@ -92,14 +66,15 @@ const LyricList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'white',
-    borderWidth: 1,
+    borderColor: Colors.dark.border,
+    borderWidth: 0.5,
     borderRadius: 15,
     overflow: 'hidden',
     height: '90%',
+    width: '100%',
   },
   imagesContainer: {
-    padding: 3,
+    padding: 8,
   },
   textContainer: {
     borderTopWidth: 1,
@@ -107,7 +82,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     overflow: 'hidden',
-    width: '95%',
+    width: '100%',
     height: '50%',
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
@@ -129,7 +104,7 @@ const styles = StyleSheet.create({
   image: {
     resizeMode: 'cover',
     height: 110,
-    width: 170,
+    width: '100%',
     borderRadius: 20,
     margin: 5,
     boxShadow: '',

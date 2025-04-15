@@ -8,11 +8,12 @@ import TopActions from '@/components/centerLayout/TopActions';
 import ImageList from '@/components/leftLayout/ImageList';
 import VideoList from '@/components/leftLayout/VideoList';
 import LyricList from '@/components/rightLayout/LyricList';
+import { Colors } from '@/constants/Colors';
 
 const index = () => {
   return (
     <LinearGradient
-      colors={['#4B5264', '#1A1F35']}
+      colors={[Colors.dark.gradients1, Colors.dark.gradients2]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.container}>
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    width: '15%',
+    width: '18%',
     gap: 4,
   },
   centerContainer: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'column',
-    width: '15%',
+    width: '18%',
     gap: 4,
   },
 });

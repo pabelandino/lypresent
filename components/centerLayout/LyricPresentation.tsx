@@ -1,5 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
+import {Colors} from '@/constants/Colors';
 
 const LyricPresentation = () => {
   const mockData = [1, 2, 3, 4, 4, 5, 6];
@@ -23,8 +24,8 @@ const LyricPresentation = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'white',
-    borderWidth: 1,
+    borderColor: Colors.dark.border,
+    borderWidth: 0.5,
     borderRadius: 15,
     overflow: 'hidden',
     alignItems: 'center',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: 'white',
+    color: Colors.dark.text,
     textAlign: 'center',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 2, height: 2 },

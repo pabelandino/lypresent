@@ -1,6 +1,8 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 
+import { Colors } from '@/constants/Colors';
+
 const ScreenPreview = () => {
   return (
     <BlurView intensity={100} style={styles.container}>
@@ -29,14 +31,14 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 35,
     fontWeight: 'bold',
-    color: 'white',
+    color: Colors.dark.text,
     textAlign: 'center',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 6,
   },
   container: {
-    borderColor: 'white',
+    borderColor: Colors.dark.border,
     borderWidth: 1,
     borderRadius: 15,
     overflow: 'hidden',
