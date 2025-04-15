@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    width: '15%',
     gap: 4,
   },
   centerContainer: {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'column',
+    width: '15%',
     gap: 4,
   },
 });

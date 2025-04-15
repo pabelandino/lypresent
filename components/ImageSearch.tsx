@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 
-const ImageSearch = () => {
+const ImageSearch = ({ onPress }: { onPress: () => void }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <SymbolView
         name="photo.badge.plus"
         tintColor="#fff"
@@ -16,8 +16,8 @@ const ImageSearch = () => {
 
 const styles = StyleSheet.create({
   symbol: {
-    width: 55,
-    height: 55,
+    width: 45,
+    height: 45,
     margin: 5,
   },
 });
