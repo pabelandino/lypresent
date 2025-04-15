@@ -9,6 +9,7 @@ import {
 import { BlurView } from 'expo-blur';
 
 import ImageSearch from '@/components/ImageSearch';
+import { Colors } from '@/constants/Colors';
 import { usePickImages } from '@/hooks/usePickImages';
 import useImageStore from '@/services/store/imageStore';
 
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   container: {
-    borderColor: 'white',
-    borderWidth: 1,
+    borderColor: Colors.dark.border,
+    borderWidth: 0.5,
     borderRadius: 15,
     overflow: 'hidden',
     height: '45%',

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { SymbolView } from 'expo-symbols';
+import {Colors} from '@/constants/Colors';
 
 const BottomActions = () => {
   return (
@@ -8,7 +9,7 @@ const BottomActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="info.circle"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -16,7 +17,7 @@ const BottomActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="display.2"
-          tintColor="#5AFF53"
+          tintColor={Colors.dark.connectedScreenIcon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -24,7 +25,7 @@ const BottomActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="gearshape"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -35,9 +36,9 @@ const BottomActions = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'white',
+    borderColor: Colors.dark.border,
     padding: 5,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 35,
     overflow: 'hidden',
     flexDirection: 'row',

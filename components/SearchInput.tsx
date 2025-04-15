@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { SymbolView } from 'expo-symbols';
+import {Colors} from '@/constants/Colors';
 
 const SearchInput = () => {
   return (
@@ -8,13 +9,13 @@ const SearchInput = () => {
       <View style={styles.searchContainer}>
         <SymbolView
           name="magnifyingglass"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
         <TextInput
           style={styles.inputSearch}
-          placeholderTextColor="#B3B3B3"
+          placeholderTextColor={Colors.dark.placeholderText}
           placeholder="Search lyrics"
         />
       </View>

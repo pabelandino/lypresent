@@ -13,6 +13,7 @@ import VideoSearch from '@/components/VideoSearch';
 import { usePickVideos } from '@/hooks/usePickVideos';
 import useVideoStore from '@/services/store/videoStore';
 import { VideoItem } from '@/services/store/videoStoreType';
+import {Colors} from '@/constants/Colors';
 
 const VideoList = () => {
   const { videoLocation } = useVideoStore();
@@ -70,8 +71,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   container: {
-    borderColor: 'white',
-    borderWidth: 1,
+    borderColor: Colors.dark.border,
+    borderWidth: 0.5,
     borderRadius: 15,
     overflow: 'hidden',
     height: '45%',
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     height: 110,
     width: 170,
     borderRadius: 20,
+    margin:5
   },
   symbol: {
     width: 50,

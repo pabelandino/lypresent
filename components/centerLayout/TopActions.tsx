@@ -1,6 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { SymbolView } from 'expo-symbols';
+
+import { Colors } from '@/constants/Colors';
 
 const TopActions = () => {
   return (
@@ -8,7 +10,7 @@ const TopActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="rectangle.on.rectangle.slash"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -16,7 +18,7 @@ const TopActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="video.slash.fill"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -24,7 +26,7 @@ const TopActions = () => {
       <TouchableOpacity>
         <SymbolView
           name="text.page.slash"
-          tintColor="#fff"
+          tintColor={Colors.dark.icon}
           style={styles.symbol}
           type="hierarchical"
         />
@@ -35,9 +37,9 @@ const TopActions = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'white',
+    borderColor: Colors.dark.border,
     padding: 5,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 35,
     overflow: 'hidden',
     flexDirection: 'row',
