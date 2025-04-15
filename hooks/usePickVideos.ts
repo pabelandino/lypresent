@@ -1,28 +1,66 @@
 import { useState } from 'react';
-import ImagePicker from 'react-native-image-crop-picker';
+import * as ImagePicker from 'expo-image-picker';
+import * as VideoThumbnails from 'expo-video-thumbnails';
 
-interface Video {
-  width?: number;
-  height?: number;
-  path?: string;
-  filename?: string;
-}
+import { useMediaLibraryPermissions } from '@/hooks/useMediaLibraryPermissions';
+import { useVideoCopy } from '@/hooks/useVideoCopy';
+import useVideoStore from '@/services/store/videoStore';
+
 export const usePickVideos = () => {
-  const [videoUrl, setVideoUrl] = useState<Video[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const { setVideoLocation } = useVideoStore();
+  const { requestPermission } = useMediaLibraryPermissions();
+  const { copyToFolder } = useVideoCopy();
 
-  const pickVideos = () => {
-    ImagePicker.openPicker({
-      cropping: false,
-      multiple: true,
-      mediaType: 'video',
-    })
-      .then(videos => {
-        setVideoUrl(videos);
-      })
-      .catch(error => {
-        console.log('ImagePicker Error: ', error);
+  const pickVideos = async () => {
+    try {
+      setLoading(true);
+
+      const granted = await requestPermission();
+      if (!granted) return;
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['videos'],
+        allowsMultipleSelection: true,
+        selectionLimit: 3,
       });
+
+      console.log(JSON.stringify(result, null, 2));
+      if (result.canceled || result.assets.length === 0) return;
+
+      for (const asset of result.assets) {
+        const copiedPath = await copyToFolder(
+          asset.uri,
+          asset.fileName as string,
+        );
+        if (!copiedPath) continue;
+
+        const thumbnail = await generateThumbnail(copiedPath);
+
+        if (!thumbnail) continue;
+
+        setVideoLocation({
+          videoPath: copiedPath,
+          thumbnailPath: thumbnail,
+        });
+      }
+    } catch (error) {
+      console.error('MediaLibrary video error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return { videoUrl, pickVideos };
+  const generateThumbnail = async (url: string) => {
+    try {
+      const { uri } = await VideoThumbnails.getThumbnailAsync(url, {
+        time: 15000,
+      });
+      return uri;
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
+  return { pickVideos, loading };
 };

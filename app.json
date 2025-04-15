@@ -35,6 +35,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app uses your photos to let you pick the best ones to show."
+        }
       ]
     ],
     "experiments": {
