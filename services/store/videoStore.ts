@@ -14,9 +14,7 @@ const useVideoStore = create<VideoStoreType>()(
         })),
       removeVideoLocation: videoPath =>
         set(state => ({
-          videoLocation: state.videoLocation.filter(
-            v => v.videoPath !== videoPath,
-          ),
+          videoLocation: state.videoLocation.filter(v => v !== videoPath),
         })),
     }),
     {

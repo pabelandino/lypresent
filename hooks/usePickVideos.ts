@@ -25,7 +25,6 @@ export const usePickVideos = () => {
         selectionLimit: 3,
       });
 
-      console.log(JSON.stringify(result, null, 2));
       if (result.canceled || result.assets.length === 0) return;
 
       for (const asset of result.assets) {

@@ -6,5 +6,5 @@ export interface VideoItem {
 export interface VideoStoreType {
   videoLocation: VideoItem[];
   setVideoLocation: (item: VideoItem) => void;
-  removeVideoLocation: (videoPath: string) => void;
+  removeVideoLocation: (item: VideoItem) => void;
 }
