@@ -1,31 +1,80 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  Animated,
   FlatList,
   Image,
   StyleSheet,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { SymbolView } from 'expo-symbols';
 
+import EditButton from '@/components/EditButton';
+import ImageDelete from '@/components/ImageDelete';
 import VideoSearch from '@/components/VideoSearch';
+import { Colors } from '@/constants/Colors';
 import { usePickVideos } from '@/hooks/usePickVideos';
 import useVideoStore from '@/services/store/videoStore';
 import { VideoItem } from '@/services/store/videoStoreType';
-import {Colors} from '@/constants/Colors';
+import {
+  startShakeAnimation,
+  stopShakeAnimation,
+} from '@/utils/shakeAnimation';
 
 const VideoList = () => {
-  const { videoLocation } = useVideoStore();
+  const { videoLocation, removeVideoLocation } = useVideoStore();
   const { pickVideos, loading } = usePickVideos();
 
+  const shakeAnim = useRef(new Animated.Value(0)).current;
+
+  const [isEditing, setEditing] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isEditing) {
+      startShakeAnimation(shakeAnim);
+    } else {
+      stopShakeAnimation(shakeAnim);
+    }
+  }, [isEditing]);
+
   const onSearch = async () => {
+    setEditing(false);
     await pickVideos();
   };
 
+  const onEditVideo = () => {
+    setEditing(!isEditing);
+  };
+
+  const onRemove = (videoURL: VideoItem) => {
+    removeVideoLocation(videoURL);
+  };
+
+  useEffect(() => {}, [videoLocation]);
+
   const renderItem = ({ item }: { item: VideoItem }) => {
     return (
-      <TouchableOpacity style={styles.videoContainer}>
+      <Animated.View
+        style={[
+          styles.videoContainer,
+          isEditing && {
+            transform: [
+              {
+                rotate: shakeAnim.interpolate({
+                  inputRange: [-1, 1],
+                  outputRange: ['-1deg', '1deg'],
+                }),
+              },
+            ],
+          },
+        ]}>
+        {isEditing && (
+          <View style={styles.deleteIcon}>
+            <ImageDelete onPress={() => onRemove(item)} />
+          </View>
+        )}
         <Image
           source={{ uri: `file://${item.thumbnailPath}` }}
           style={styles.video}
@@ -36,10 +85,10 @@ const VideoList = () => {
           style={styles.symbol}
           type="hierarchical"
         />
-      </TouchableOpacity>
+      </Animated.View>
     );
   };
-  useEffect(() => {}, [videoLocation]);
+
   return (
     <BlurView intensity={100} style={styles.container}>
       {loading ? (
@@ -47,6 +96,7 @@ const VideoList = () => {
       ) : (
         <FlatList
           style={styles.videoListContainer}
+          contentContainerStyle={styles.videosContainer}
           data={videoLocation}
           keyExtractor={(item, index) => `${item}-${index}`}
           stickyHeaderIndices={[0]}
@@ -54,8 +104,9 @@ const VideoList = () => {
             <BlurView
               intensity={100}
               tint="dark"
-              style={styles.searchImageHeader}>
+              style={styles.searchVideoHeader}>
               <VideoSearch onPress={onSearch} />
+              {videoLocation?.length > 0 && <EditButton onEdit={onEditVideo} />}
             </BlurView>
           }
           renderItem={renderItem}
@@ -82,14 +133,23 @@ const styles = StyleSheet.create({
   },
   videoContainer: {
     alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 12,
+  },
+  videosContainer: {
+    paddingBottom: 70,
+  },
+  deleteIcon: {
+    position: 'absolute',
+    top: -20,
+    right: -10,
+    bottom: 0,
+    zIndex: 50,
   },
   video: {
     height: 110,
     width: 170,
     borderRadius: 20,
-    margin:5
+    margin: 5,
   },
   symbol: {
     width: 50,
@@ -101,10 +161,11 @@ const styles = StyleSheet.create({
   videoListContainer: {
     width: '100%',
   },
-  searchImageHeader: {
-    flexDirection: 'column',
-    alignItems: 'center',
+  searchVideoHeader: {
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
   },
 });
